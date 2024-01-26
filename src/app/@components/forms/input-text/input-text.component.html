@@ -1,0 +1,13 @@
+<input
+  type="text"
+  class="bg-black text-white border-grey border-2 p-2 rounded-xl w-full"
+  [formControl]="formControl"
+  [placeholder]="placeholder"
+/>
+@if (control.touched) {
+<div class="text-sm text-red">
+  @if(control.errors?.['required']) {
+  <p>{{ name }} is required</p>
+  }
+</div>
+}

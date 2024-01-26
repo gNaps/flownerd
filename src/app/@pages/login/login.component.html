@@ -1,1 +1,24 @@
-<p>login works!</p>
+<section class="h-screen flex flex-col items-center justify-end p-7">
+  <img src="../../../assets/logo_color.svg" alt="Flownerd logo" width="52" />
+  <h1 class="my-3"><span class="font-black">Flow</span>nerd</h1>
+  <p class="text-center my-3">
+    The best place to keep updated your videogames collection
+  </p>
+  <form class="w-full" [formGroup]="loginForm">
+    <div class="my-3">
+      <app-input-text
+        [placeholder]="'Enter your username'"
+        [control]="loginForm.get('username')!"
+        [name]="'Username'"
+      />
+    </div>
+    <div class="my-3">
+      <app-button
+        class="my-3"
+        [value]="'Get Started'"
+        [type]="'submit'"
+        (click)="onLogin()"
+      />
+    </div>
+  </form>
+</section>
