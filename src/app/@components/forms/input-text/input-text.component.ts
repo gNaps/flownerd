@@ -4,7 +4,7 @@ import {
   FormControl,
   FormsModule,
   ReactiveFormsModule,
-  UntypedFormControl,
+  UntypedFormControl
 } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,7 @@ import {
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './input-text.component.html',
-  styleUrl: './input-text.component.scss',
+  styleUrl: './input-text.component.scss'
 })
 export class InputTextComponent {
   @Input() name = '';

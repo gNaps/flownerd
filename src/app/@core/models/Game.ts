@@ -3,7 +3,7 @@ export enum GameStatus {
   COMPLETED = 'COMPLETED',
   IN_PROGRESS = 'IN_PROGRESS',
   TO_PLAY = 'TO_PLAY',
-  TO_BUY = 'TO_BUY',
+  TO_BUY = 'TO_BUY'
 }
 
 export interface Game {

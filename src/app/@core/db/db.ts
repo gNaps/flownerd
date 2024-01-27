@@ -10,7 +10,7 @@ export class AppDB extends Dexie {
     super('ngdexieliveQuery');
     this.version(1).stores({
       users: '++id, name',
-      games: '++id, twitch_id, name',
+      games: '++id, twitch_id, name'
     });
   }
 }

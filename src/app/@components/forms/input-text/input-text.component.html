@@ -5,9 +5,9 @@
   [placeholder]="placeholder"
 />
 @if (control.touched) {
-<div class="text-sm text-red">
-  @if(control.errors?.['required']) {
-  <p>{{ name }} is required</p>
-  }
-</div>
+  <div class="text-sm text-red">
+    @if (control.errors?.['required']) {
+      <p>{{ name }} is required</p>
+    }
+  </div>
 }

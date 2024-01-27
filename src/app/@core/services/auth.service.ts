@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Subject, from, lastValueFrom, take, tap } from 'rxjs';
+import { Subject, from, take, tap } from 'rxjs';
 import { db } from '../db/db';
 import { User } from '../models/User';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
   isAuthenticated: boolean = false;
@@ -34,7 +34,7 @@ export class AuthService {
   signIn(user: User) {
     from(
       db.users.add({
-        username: user.username,
+        username: user.username
       })
     )
       .pipe(

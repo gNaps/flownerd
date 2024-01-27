@@ -6,7 +6,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { markFormAsTouched } from '../../@core/utils';
 import { AuthService } from '../../@core/services/auth.service';
@@ -21,12 +21,12 @@ import { User } from '../../@core/models/User';
     InputTextComponent,
     ButtonComponent,
     FormsModule,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule
+  ]
 })
 export class LoginComponent {
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required])
   });
 
   constructor(private authService: AuthService) {}

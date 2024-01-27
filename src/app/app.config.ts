@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
       provide: APP_INITIALIZER,
       useFactory: appInit,
       multi: true,
-      deps: [AuthService],
-    },
-  ],
+      deps: [AuthService]
+    }
+  ]
 };
