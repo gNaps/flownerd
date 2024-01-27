@@ -24,15 +24,17 @@
   />
 
   @if (games && games.length) {
-    <p>Games filtrati</p>
-    @for (g of games; track g.id) {
-      {{ g.name }}
-    }
+    <p class="mt-10 mb-5">
+      <strong>Results</strong>
+      with {{ searchValue }}
+    </p>
+    <app-game-list [games]="games" />
   } @else if (popularGames && popularGames.length) {
-    <p>Popular games</p>
-    @for (g of popularGames; track g.id) {
-      {{ g.name }}
-    }
+    <p class="mt-10 mb-5">
+      <strong>Popular</strong>
+      games
+    </p>
+    <app-game-list [games]="popularGames" />
   } @else {
     <p>Error</p>
   }

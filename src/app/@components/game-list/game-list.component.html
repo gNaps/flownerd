@@ -1,1 +1,5 @@
-<p>game-list works!</p>
+<div class="flex flex-wrap">
+  @for (g of games; track g.id) {
+    <app-game-item [game]="g" />
+  }
+</div>

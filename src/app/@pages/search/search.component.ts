@@ -7,11 +7,12 @@ import { Subject, debounceTime, iif, of, switchMap, tap } from 'rxjs';
 import { GamesService } from '../../@core/services/games.service';
 import { ApiGame } from '../../@core/models/ApiGame';
 import { CommonModule } from '@angular/common';
+import { GameListComponent } from '../../@components/game-list/game-list.component';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [InputTextComponent, CommonModule],
+  imports: [InputTextComponent, CommonModule, GameListComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
@@ -23,6 +24,10 @@ export class SearchComponent implements OnInit {
 
   private games$: Subject<string | null> = new Subject();
   private popularGames$: Subject<void> = new Subject();
+
+  get searchValue() {
+    return this.searchControl.value;
+  }
 
   constructor(
     private router: Router,
