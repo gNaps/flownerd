@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, from, take, tap } from 'rxjs';
+import { BehaviorSubject, from, take, tap } from 'rxjs';
 import { db } from '../db/db';
 import { User } from '../models/User';
 import { Router } from '@angular/router';
@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   isAuthenticated: boolean = false;
-  private _currentUser$: Subject<User> = new Subject();
+  private _currentUser$: BehaviorSubject<User> = new BehaviorSubject({
+    username: ''
+  });
   private _currentUser: User | null = null;
   currentUser$ = this._currentUser$.asObservable();
 

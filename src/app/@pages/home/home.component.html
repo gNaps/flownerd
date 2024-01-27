@@ -1,1 +1,13 @@
-<p>home works!</p>
+<section class="p-7">
+  @if (currentUser && currentUser.id) {
+    <app-topbar [username]="currentUser.username!" (addGame)="onAddGame()" />
+  }
+
+  @if (games && games.length) {
+    <app-game-list />
+  } @else {
+    <div class="flex justify-center mt-24">
+      <p>You haven't games saved yet!</p>
+    </div>
+  }
+</section>
