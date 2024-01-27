@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   isAuthenticated: boolean = false;
-  private _currentUser$: Subject<any> = new Subject();
-  private _currentUser: any = null;
+  private _currentUser$: Subject<User> = new Subject();
+  private _currentUser: User | null = null;
   currentUser$ = this._currentUser$.asObservable();
 
-  get currentUser(): any {
+  get currentUser(): User | null {
     return this._currentUser;
   }
 

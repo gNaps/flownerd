@@ -13,11 +13,11 @@ export class ButtonComponent {
   @Input() type = 'button';
   @Input() style: 'filled' | 'outline' = 'filled';
 
-  @Output() click = new EventEmitter();
+  @Output() clickButton = new EventEmitter();
 
   onClick(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
-    this.click.emit();
+    this.clickButton.emit();
   }
 }
