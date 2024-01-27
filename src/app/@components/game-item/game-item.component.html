@@ -1,8 +1,9 @@
-<div
+<button
   class="h-full w-full bg-cover bg-center border border-black flex flex-col justify-end"
   [style.backgroundImage]="'url(' + game.background_image + ')'"
+  (click)="onClickGame(game)"
 >
   <div class="glass">
     {{ game.name }}
   </div>
-</div>
+</button>

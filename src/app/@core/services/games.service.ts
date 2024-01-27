@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, from, of } from 'rxjs';
 import { db } from '../db/db';
-import { Game } from '../models/Game';
+import { Game, GameStatus } from '../models/Game';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ApiGame } from '../models/ApiGame';
-import { popularGames, searchedGames } from '../mock';
+import { popularGames, searchedGames, singleGame } from '../mock';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,17 @@ import { popularGames, searchedGames } from '../mock';
 export class GamesService {
   constructor(private httpClient: HttpClient) {}
 
-  findUserGames(): Observable<Game[]> {
+  findAllUserGames(): Observable<Game[]> {
     return from(db.games.toArray());
   }
 
+  findOneUserGames(id: number): Observable<Game[]> {
+    console.log('find where id', id);
+    return from(db.games.where({ id }).toArray());
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  findTwitchGames(filter: string): Observable<any[]> {
+  findAllApiGames(filter: string): Observable<any[]> {
     // return this.httpClient.get<TwitchGame[]>(`${environment.apiUrl}/games`, {
     //   params: {
     //     key: environment.secretKey,
@@ -31,6 +36,20 @@ export class GamesService {
     console.log('filter', filter);
     console.log('environment', environment);
     return of(searchedGames);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  findAOneApiGames(id: number): Observable<any> {
+    // return this.httpClient.get<TwitchGame[]>(`${environment.apiUrl}/games`, {
+    //   params: {
+    //     key: environment.secretKey,
+    //     exclude_collection: true,
+    //     exclude_additions: true,
+    //     id: id
+    //   }
+    // });
+    console.log('id', id);
+    return of(singleGame);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,5 +67,21 @@ export class GamesService {
     // });
 
     return of(popularGames);
+  }
+
+  addGameToLibrary(game: Game, status: GameStatus) {
+    return from(
+      db.games.add({
+        id: game.id,
+        name: game.name,
+        background_image: game.background_image,
+        metacritic: game.metacritic,
+        status: status
+      })
+    );
+  }
+
+  removeGameToLibrary(game: Game) {
+    return from(db.games.delete(game.id!));
   }
 }

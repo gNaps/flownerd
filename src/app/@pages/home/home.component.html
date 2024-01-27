@@ -4,7 +4,7 @@
   }
 
   @if (games && games.length) {
-    <app-game-list />
+    <app-game-list [games]="games" />
   } @else {
     <div class="flex justify-center mt-24">
       <p>You haven't games saved yet!</p>

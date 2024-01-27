@@ -55,7 +55,7 @@ export class SearchComponent implements OnInit {
         switchMap((filter) =>
           iif(
             () => !!filter,
-            this.gamesService.findTwitchGames(filter!),
+            this.gamesService.findAllApiGames(filter!),
             of([])
           )
         ),

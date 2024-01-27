@@ -6,11 +6,39 @@ export enum GameStatus {
   TO_BUY = 'TO_BUY'
 }
 
+export const gameStatus = [
+  {
+    key: GameStatus.PERFECT,
+    label: '100%',
+    icon: '💯'
+  },
+  {
+    key: GameStatus.COMPLETED,
+    label: 'Completed',
+    icon: '✅'
+  },
+  {
+    key: GameStatus.IN_PROGRESS,
+    label: 'In progress',
+    icon: '⌛'
+  },
+  {
+    key: GameStatus.TO_PLAY,
+    label: 'To play',
+    icon: '🔒'
+  },
+  {
+    key: GameStatus.TO_BUY,
+    label: 'To buy',
+    icon: '🛒'
+  }
+];
+
 export interface Game {
-  id: number;
-  twitch_id: number;
-  name: string;
-  cover: string;
-  rating: number;
-  status: GameStatus;
+  id?: number;
+  name?: string;
+  background_image?: string;
+  metacritic?: number;
+  status?: GameStatus;
+  description_raw?: string;
 }

@@ -11,7 +11,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input() value = '';
   @Input() type = 'button';
-  @Input() style: 'filled' | 'outline' = 'filled';
+  @Input() style: 'filled' | 'outlined' = 'filled';
 
   @Output() clickButton = new EventEmitter();
 

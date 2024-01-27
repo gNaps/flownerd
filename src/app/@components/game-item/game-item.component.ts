@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ApiGame } from '../../@core/models/ApiGame';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Game } from '../../@core/models/Game';
 
 @Component({
   selector: 'app-game-item',
@@ -9,5 +9,10 @@ import { ApiGame } from '../../@core/models/ApiGame';
   styleUrl: './game-item.component.scss'
 })
 export class GameItemComponent {
-  @Input() game!: ApiGame;
+  @Input() game!: Game;
+  @Output() clickGame: EventEmitter<Game> = new EventEmitter();
+
+  onClickGame(game: Game) {
+    this.clickGame.emit(game);
+  }
 }

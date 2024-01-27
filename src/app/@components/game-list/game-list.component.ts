@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ApiGame } from '../../@core/models/ApiGame';
 import { GameItemComponent } from '../game-item/game-item.component';
+import { Router } from '@angular/router';
+import { Game } from '../../@core/models/Game';
 
 @Component({
   selector: 'app-game-list',
@@ -10,5 +11,12 @@ import { GameItemComponent } from '../game-item/game-item.component';
   styleUrl: './game-list.component.scss'
 })
 export class GameListComponent {
-  @Input() games: ApiGame[] = [];
+  @Input() games: Game[] = [];
+
+  constructor(private router: Router) {}
+
+  onClickGame(game: Game) {
+    console.log('ciaoo');
+    this.router.navigate(['/game', game.id]);
+  }
 }

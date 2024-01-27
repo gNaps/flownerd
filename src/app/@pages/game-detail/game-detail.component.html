@@ -1,0 +1,50 @@
+<section class="p-7">
+  @if (game) {
+    <div class="flex items-center mb-12 gap-5">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 cursor-pointer"
+        (click)="goBack()"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+        />
+      </svg>
+      <h4 class="font-bold text-center">{{ game.name }}</h4>
+    </div>
+
+    <div
+      [style.backgroundImage]="'url(' + game.background_image + ')'"
+      class="w-full h-48 bg-cover bg-center"
+    ></div>
+
+    <div class="mt-5 flex flex-col gap-3">
+      @for (s of gameStatus; track s.key) {
+        <app-button
+          [value]="s.icon + ' ' + s.label"
+          [type]="'button'"
+          [style]="'outlined'"
+          (clickButton)="setStatus(s.key)"
+        />
+      }
+
+      @if (game.status) {
+        <app-button
+          [value]="'Remove from FLOW'"
+          [type]="'button'"
+          [style]="'outlined'"
+          (clickButton)="remove()"
+        />
+      }
+    </div>
+
+    <h4 class="mt-5">Summary</h4>
+    <p class="text-sm">{{ game.description_raw }}</p>
+  }
+</section>
