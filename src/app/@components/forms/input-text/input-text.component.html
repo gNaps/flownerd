@@ -1,13 +1,19 @@
-<input
-  type="text"
-  class="bg-black text-white border-grey border-2 p-2 rounded-xl w-full"
-  [formControl]="formControl"
-  [placeholder]="placeholder"
-/>
-@if (control.touched) {
-  <div class="text-sm text-red">
-    @if (control.errors?.['required']) {
-      <p>{{ name }} is required</p>
-    }
-  </div>
-}
+<div class="relative w-full mb-3">
+  @if (icon) {
+    <ng-container [ngTemplateOutlet]="icon"></ng-container>
+  }
+  <input
+    type="text"
+    class="bg-black text-white border-grey border-2 py-2 rounded-xl w-full"
+    [ngClass]="icon ? 'px-14' : 'px-2'"
+    [formControl]="formControl"
+    [placeholder]="placeholder"
+  />
+  @if (control.touched) {
+    <div class="text-sm text-red">
+      @if (control.errors?.['required']) {
+        <p>{{ name }} is required</p>
+      }
+    </div>
+  }
+</div>

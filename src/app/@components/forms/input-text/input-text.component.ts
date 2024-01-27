@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, TemplateRef } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -10,7 +11,7 @@ import {
 @Component({
   selector: 'app-input-text',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss'
 })
@@ -18,6 +19,7 @@ export class InputTextComponent {
   @Input() name = '';
   @Input() placeholder = '';
   @Input() control: AbstractControl = new UntypedFormControl();
+  @Input() icon?: TemplateRef<SVGElement>;
 
   get formControl() {
     return this.control as FormControl;

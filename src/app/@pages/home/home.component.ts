@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.games$
       .pipe(
         takeUntilDestroyed(),
-        switchMap(() => this.gamesService.findGames()),
+        switchMap(() => this.gamesService.findUserGames()),
         tap((games) => (this.games = { ...games }))
       )
       .subscribe();
