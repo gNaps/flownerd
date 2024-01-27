@@ -7,7 +7,7 @@ export const AuthGuard = () => {
   const router = inject(Router);
 
   const user = authService.currentUser;
-  if (user && user.token) {
+  if (user) {
     return true;
   } else {
     return router.createUrlTree(['/login']);

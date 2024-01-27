@@ -2,6 +2,10 @@
   width: 100%;
 }
 
-button {
+.filled {
   background: linear-gradient(180deg, #da22ff 0%, #9733ee 100%);
+
+  &:hover {
+    background: linear-gradient(180deg, #8a15a1 0%, #46176f 100%);
+  }
 }

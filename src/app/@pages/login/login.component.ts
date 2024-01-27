@@ -9,6 +9,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { markFormAsTouched } from '../../@core/utils';
+import { AuthService } from '../../@core/services/auth.service';
+import { User } from '../../@core/models/User';
 
 @Component({
   selector: 'app-login',
@@ -24,14 +26,17 @@ import { markFormAsTouched } from '../../@core/utils';
 })
 export class LoginComponent {
   loginForm = new FormGroup({
-    username: new FormControl(null, [Validators.required]),
+    username: new FormControl('', [Validators.required]),
   });
+
+  constructor(private authService: AuthService) {}
 
   onLogin() {
     markFormAsTouched(this.loginForm);
 
     if (this.loginForm.valid) {
-      console.log('andiamo avanti');
+      const user = { ...this.loginForm.value } as User;
+      this.authService.signIn(user);
     }
   }
 }
