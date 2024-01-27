@@ -5,9 +5,9 @@ import { FormControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subject, debounceTime, iif, of, switchMap, tap } from 'rxjs';
 import { GamesService } from '../../@core/services/games.service';
-import { ApiGame } from '../../@core/models/ApiGame';
 import { CommonModule } from '@angular/common';
 import { GameListComponent } from '../../@components/game-list/game-list.component';
+import { Game } from '../../@core/models/Game';
 
 @Component({
   selector: 'app-search',
@@ -17,8 +17,8 @@ import { GameListComponent } from '../../@components/game-list/game-list.compone
   styleUrl: './search.component.scss'
 })
 export class SearchComponent implements OnInit {
-  games: ApiGame[] = [];
-  popularGames: ApiGame[] = [];
+  games: Game[] = [];
+  popularGames: Game[] = [];
 
   searchControl = new FormControl('');
 

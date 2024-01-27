@@ -12,11 +12,11 @@ import { Game } from '../../@core/models/Game';
 })
 export class GameListComponent {
   @Input() games: Game[] = [];
+  @Input() showName = true;
 
   constructor(private router: Router) {}
 
   onClickGame(game: Game) {
-    console.log('ciaoo');
     this.router.navigate(['/game', game.id]);
   }
 }

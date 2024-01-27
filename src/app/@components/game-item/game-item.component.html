@@ -3,7 +3,9 @@
   [style.backgroundImage]="'url(' + game.background_image + ')'"
   (click)="onClickGame(game)"
 >
-  <div class="glass">
-    {{ game.name }}
-  </div>
+  @if (showName) {
+    <div class="glass">
+      {{ game.name }}
+    </div>
+  }
 </button>

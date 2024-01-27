@@ -4,8 +4,6 @@ import { db } from '../db/db';
 import { Game, GameStatus } from '../models/Game';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ApiGame } from '../models/ApiGame';
 import { popularGames, searchedGames, singleGame } from '../mock';
 
 @Injectable({
@@ -19,7 +17,6 @@ export class GamesService {
   }
 
   findOneUserGames(id: number): Observable<Game[]> {
-    console.log('find where id', id);
     return from(db.games.where({ id }).toArray());
   }
 
@@ -69,7 +66,7 @@ export class GamesService {
     return of(popularGames);
   }
 
-  addGameToLibrary(game: Game, status: GameStatus) {
+  addGame(game: Game, status: GameStatus) {
     return from(
       db.games.add({
         id: game.id,
@@ -81,7 +78,15 @@ export class GamesService {
     );
   }
 
-  removeGameToLibrary(game: Game) {
+  updateGame(game: Game, status: GameStatus) {
+    return from(
+      db.games.update(game.id!, {
+        status: status
+      })
+    );
+  }
+
+  removeGame(game: Game) {
     return from(db.games.delete(game.id!));
   }
 }

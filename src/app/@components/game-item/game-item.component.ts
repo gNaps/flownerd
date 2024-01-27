@@ -10,6 +10,8 @@ import { Game } from '../../@core/models/Game';
 })
 export class GameItemComponent {
   @Input() game!: Game;
+  @Input() showName = true;
+
   @Output() clickGame: EventEmitter<Game> = new EventEmitter();
 
   onClickGame(game: Game) {

@@ -4,7 +4,52 @@
   }
 
   @if (games && games.length) {
-    <app-game-list [games]="games" />
+    <div class="mt-3 mb-6">
+      <div class="flex flex-wrap justify-center">
+        <div class="me-5">
+          <strong>{{ games.length }}</strong> 🎮 total games
+        </div>
+        <div class="me-5">
+          <strong>{{ perfectGames?.length }}</strong> 💯 perfects
+        </div>
+        <div class="me-5">
+          <strong>{{ completedGames?.length }}</strong> ✅ completed
+        </div>
+        <div class="me-5">
+          <strong>{{ inProgressGames?.length }}</strong> ⌛ in progress
+        </div>
+        <div class="me-5">
+          <strong>{{ toPlayGames?.length }}</strong> 🔒 to play
+        </div>
+        <div class="me-5">
+          <strong>{{ toBuyGames?.length }}</strong> 🛒 to buy
+        </div>
+      </div>
+    </div>
+    <div class="my-3 flex flex-col">
+      <div class="flex flex-wrap gap-2">
+        <div>
+          <app-button
+            [value]="'All'"
+            [type]="'button'"
+            [style]="activeFilters['all'] ? 'filled' : 'outlined'"
+            (clickButton)="setFilter('all')"
+          />
+        </div>
+
+        @for (s of gameStatus; track s.key) {
+          <div>
+            <app-button
+              [value]="s.label"
+              [type]="'button'"
+              [style]="activeFilters[s.key] ? 'filled' : 'outlined'"
+              (clickButton)="setFilter(s.key)"
+            />
+          </div>
+        }
+      </div>
+    </div>
+    <app-game-list [games]="filteredGames!" [showName]="false" />
   } @else {
     <div class="flex justify-center mt-24">
       <p>You haven't games saved yet!</p>

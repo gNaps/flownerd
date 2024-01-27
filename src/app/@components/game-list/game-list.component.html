@@ -1,5 +1,9 @@
 <div class="flex flex-wrap">
   @for (g of games; track g.id) {
-    <app-game-item [game]="g" (clickGame)="onClickGame($event)" />
+    <app-game-item
+      [game]="g"
+      [showName]="showName"
+      (clickGame)="onClickGame($event)"
+    />
   }
 </div>

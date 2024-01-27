@@ -14,6 +14,11 @@
   background:
     linear-gradient(#181818, #181818) padding-box,
     linear-gradient(180deg, #da22ff 0%, #9733ee 100%) border-box;
-
   border: 2px solid transparent;
+
+  &:hover {
+    background:
+      linear-gradient(#181818, #181818) padding-box,
+      linear-gradient(180deg, #8a15a1 0%, #46176f 100%) border-box;
+  }
 }

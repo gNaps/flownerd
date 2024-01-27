@@ -29,7 +29,7 @@
         <app-button
           [value]="s.icon + ' ' + s.label"
           [type]="'button'"
-          [style]="'outlined'"
+          [style]="game.status && game.status === s.key ? 'filled' : 'outlined'"
           (clickButton)="setStatus(s.key)"
         />
       }

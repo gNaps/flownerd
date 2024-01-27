@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ApiGame } from '../../@core/models/ApiGame';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, combineLatest, take, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -16,11 +15,11 @@ import { ButtonComponent } from '../../@components/forms/button/button.component
   styleUrl: './game-detail.component.scss'
 })
 export class GameDetailComponent {
-  game!: ApiGame;
+  game!: Game;
   gameId!: number;
   status?: GameStatus;
 
-  apiGame$: Observable<ApiGame>;
+  apiGame$: Observable<Game>;
   userGame$: Observable<Game[]>;
 
   gameStatus = gameStatus;
@@ -38,15 +37,12 @@ export class GameDetailComponent {
       .pipe(
         takeUntilDestroyed(),
         tap(([apiData, userData]) => {
-          console.log('userData', userData);
           this.game = {
             ...apiData,
             ...(userData && userData.length
               ? { status: userData[0].status, gameUserId: userData[0].id }
               : {})
           };
-
-          console.log('this.game', this.game);
         })
       )
       .subscribe();
@@ -57,20 +53,28 @@ export class GameDetailComponent {
   }
 
   setStatus(status: GameStatus) {
-    console.log('hai scelto', status);
-    this.gamesService
-      .addGameToLibrary(this.game, status)
-      .pipe(
-        take(1),
-        tap(() => this.router.navigate(['/']))
-      )
-      .subscribe();
+    if (this.game.status) {
+      this.gamesService
+        .updateGame(this.game, status)
+        .pipe(
+          take(1),
+          tap(() => this.router.navigate(['/']))
+        )
+        .subscribe();
+    } else {
+      this.gamesService
+        .addGame(this.game, status)
+        .pipe(
+          take(1),
+          tap(() => this.router.navigate(['/']))
+        )
+        .subscribe();
+    }
   }
 
   remove() {
-    console.log('remove this game from FLOW', this.game.id);
     this.gamesService
-      .removeGameToLibrary(this.game!)
+      .removeGame(this.game!)
       .pipe(
         take(1),
         tap(() => this.router.navigate(['/']))
