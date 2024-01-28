@@ -1,11 +1,13 @@
-<button
-  class="h-full w-full bg-cover bg-center border border-black flex flex-col justify-end"
-  [style.backgroundImage]="'url(' + game.background_image + ')'"
-  (click)="onClickGame(game)"
->
-  @if (showName) {
-    <div class="glass">
-      {{ game.name }}
-    </div>
-  }
-</button>
+@if (game) {
+  <button
+    class="h-full w-full bg-cover bg-center border border-black flex flex-col justify-end"
+    [style.backgroundImage]="'url(' + game.background_image + ')'"
+    (click)="onClickGame(game)"
+  >
+    @if (showName) {
+      <div class="glass">
+        {{ game.name }}
+      </div>
+    }
+  </button>
+}
