@@ -35,3 +35,7 @@ To execute tests, use the following command:
 ```bash
 yarn test
 ```
+
+## Figma mockups
+
+https://www.figma.com/file/DfFjDb0ELpibYKVmZBWwwo/FLOWNERD?type=design&node-id=0%3A1&mode=design&t=p2hwWwntJ5332JeH-1
