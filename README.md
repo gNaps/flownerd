@@ -1,27 +1,37 @@
-# Flownerd
+# FLOWNERD
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
+## Overview
 
-## Development server
+Flownerd is an Angular application that enables users to manage their videogames library. Users can add games to their personalized dashboard, called FLOW, and assign each game a status such as "To Buy," "To Play," "In Progress," "Completed," or "100%"
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The application uses the RAWG API for video game searches and saves data locally in the browser's IndexedDB using web APIs.
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Follow these steps to run the project locally:
 
-## Build
+1. **Install Dependencies:**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   ```bash
+   yarn install
+   ```
 
-## Running unit tests
+2. **Set the api key:**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   Update the file src/environments/environments.ts with the real secret key of RAWG.
 
-## Running end-to-end tests
+3. **Run the Application:**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   ```bash
+   yarn start
+   ```
 
-## Further help
+   The application will be accessible at `http://localhost:4200/`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Running Tests
+
+To execute tests, use the following command:
+
+```bash
+yarn test
+```
