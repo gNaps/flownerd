@@ -42,3 +42,7 @@ export interface Game {
   status?: GameStatus;
   description_raw?: string;
 }
+
+export interface GameResponse {
+  results: Game[];
+}

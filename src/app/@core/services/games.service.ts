@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, from, of } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
 import { db } from '../db/db';
-import { Game, GameStatus } from '../models/Game';
+import { Game, GameResponse, GameStatus } from '../models/Game';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { popularGames, searchedGames, singleGame } from '../mock';
 
 @Injectable({
   providedIn: 'root'
@@ -20,50 +19,41 @@ export class GamesService {
     return from(db.games.where({ id }).toArray());
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  findAllApiGames(filter: string): Observable<any[]> {
-    // return this.httpClient.get<TwitchGame[]>(`${environment.apiUrl}/games`, {
-    //   params: {
-    //     key: environment.secretKey,
-    //     exclude_collection: true,
-    //     exclude_additions: true,
-    //     search: filter
-    //   }
-    // });
-    console.log('filter', filter);
-    console.log('environment', environment);
-    return of(searchedGames);
+  findAllApiGames(filter: string): Observable<Game[]> {
+    return this.httpClient
+      .get<GameResponse>(`${environment.apiUrl}/games`, {
+        params: {
+          key: environment.secretKey,
+          exclude_collection: true,
+          exclude_additions: true,
+          search: filter
+        }
+      })
+      .pipe(map((data) => data.results));
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  findAOneApiGames(id: number): Observable<any> {
-    // return this.httpClient.get<TwitchGame[]>(`${environment.apiUrl}/games`, {
-    //   params: {
-    //     key: environment.secretKey,
-    //     exclude_collection: true,
-    //     exclude_additions: true,
-    //     id: id
-    //   }
-    // });
-    console.log('id', id);
-    return of(singleGame);
+  findAOneApiGames(id: number): Observable<Game> {
+    return this.httpClient.get<Game>(`${environment.apiUrl}/games/${id}`, {
+      params: {
+        key: environment.secretKey
+      }
+    });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  findPopularGames(): Observable<any[]> {
-    // return this.httpClient.get<TwitchGame[]>(`${environment.apiUrl}/games`, {
-    //   params: {
-    //     key: environment.secretKey,
-    //     platforms: [187, 186, 7],
-    //     ordering: '-metacritic',
-    //     page_size: 9,
-    //     exclude_collection: true,
-    //     exclude_additions: true,
-    //     dates: '2014-01-01,2050-12-31'
-    //   }
-    // });
-
-    return of(popularGames);
+  findPopularGames(): Observable<Game[]> {
+    return this.httpClient
+      .get<GameResponse>(`${environment.apiUrl}/games`, {
+        params: {
+          key: environment.secretKey,
+          platforms: [187, 186, 7],
+          ordering: '-metacritic',
+          page_size: 9,
+          exclude_collection: true,
+          exclude_additions: true,
+          dates: '2014-01-01,2050-12-31'
+        }
+      })
+      .pipe(map((data) => data.results));
   }
 
   addGame(game: Game, status: GameStatus) {
